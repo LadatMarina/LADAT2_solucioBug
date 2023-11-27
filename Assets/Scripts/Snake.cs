@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Snake : MonoBehaviour
 {
@@ -288,64 +289,67 @@ public class Snake : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
-        // Cambio dirección hacia arriba
-        if (verticalInput > 0) // Si he pulsado hacia arriba (W o Flecha Arriba)
+        if (canMove)
         {
-            if (gridMoveDirection != Direction.Down) // Si iba en horizontal
+            // Cambio dirección hacia arriba
+            if (verticalInput > 0) // Si he pulsado hacia arriba (W o Flecha Arriba)
             {
-                if (canMove)
+                if (gridMoveDirection != Direction.Down) // Si iba en horizontal
                 {
                     canMove = false;
                     // Cambio la dirección hacia arriba (0,1)
                     gridMoveDirection = Direction.Up;
                 }
-                
             }
-        }
         
-        // Cambio dirección hacia abajo
-        // Input es abajo?
-        if (verticalInput < 0)
-        {
-            // Mi dirección hasta ahora era horizontal
-            if (gridMoveDirection != Direction.Up)
+            // Cambio dirección hacia abajo
+            // Input es abajo?
+            if (verticalInput < 0)
             {
-                if (canMove)
+                // Mi dirección hasta ahora era horizontal
+                if (gridMoveDirection != Direction.Up)
                 {
                     canMove = false;
                     gridMoveDirection = Direction.Down;
-
                 }
             }
-        }
 
-        // Cambio dirección hacia derecha
-        if (horizontalInput > 0)
-        {
-            if (gridMoveDirection != Direction.Left)
+            // Cambio dirección hacia derecha
+            if (horizontalInput > 0)
             {
-                if (canMove)
+                if (gridMoveDirection != Direction.Left)
                 {
                     canMove = false;
                     gridMoveDirection = Direction.Right;
-
                 }
             }
-        }
         
-        // Cambio dirección hacia izquierda
-        if (horizontalInput < 0)
-        {
-            if (gridMoveDirection != Direction.Right)
+            // Cambio dirección hacia izquierda
+            if (horizontalInput < 0)
             {
-                if (canMove)
+                if (gridMoveDirection != Direction.Right)
                 {
                     canMove = false;
                     gridMoveDirection = Direction.Left;
-
                 }
             }
+        }
+        else
+        {
+            gridMoveDirection.
+            /*
+            int alternativeMovement;
+            alternativeMovement = Random.Range(0, 2);
+
+            if (alternativeMovement == 0)
+            {
+                gridMoveDirection = new Vector3((moveDirection.x * -1), moveDirection.y, 0);
+            }
+            if (alternativeMovement == 1)
+            {
+                gridMoveDirection = new Vector3((moveDirection.x), moveDirection.y * -1, 0);
+            }
+            */
         }
     }
 
