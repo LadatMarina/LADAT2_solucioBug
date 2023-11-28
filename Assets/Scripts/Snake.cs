@@ -193,6 +193,8 @@ public class Snake : MonoBehaviour
         snakeBodyPartsList = new List<SnakeBodyPart>();
 
         state = State.Alive;
+
+        //GameAssets.Instance.arrow_group.transform.parent = ();
     }
 
     private void Update()

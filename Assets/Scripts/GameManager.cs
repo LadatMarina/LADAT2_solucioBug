@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         scoreUIScript = GetComponentInChildren<ScoreUI>();
         score = 0;
         AddScore(0);
+
+        GameAssets.Instance.arrow_group.transform.parent = snakeHeadGameObject.transform;
     }
 
     private void Update()
