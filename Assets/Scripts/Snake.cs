@@ -207,7 +207,7 @@ public class Snake : MonoBehaviour
                 break;
         }
     }
-
+    
     public void Setup(LevelGrid levelGrid)
     {
         // levelGrid de snake = levelGrid que viene por parámetro
@@ -300,6 +300,11 @@ public class Snake : MonoBehaviour
                     // Cambio la dirección hacia arriba (0,1)
                     gridMoveDirection = Direction.Up;
                 }
+                else
+                {
+                    canMove = false;
+                    gridMoveDirection = (Direction)Random.Range(0,2);
+                }
             }
         
             // Cambio dirección hacia abajo
@@ -312,6 +317,11 @@ public class Snake : MonoBehaviour
                     canMove = false;
                     gridMoveDirection = Direction.Down;
                 }
+                else
+                {
+                    canMove = false;
+                    gridMoveDirection = (Direction)Random.Range(0, 2);
+                }
             }
 
             // Cambio dirección hacia derecha
@@ -322,8 +332,15 @@ public class Snake : MonoBehaviour
                     canMove = false;
                     gridMoveDirection = Direction.Right;
                 }
+                else
+                {
+                    canMove = false;
+                    gridMoveDirection = (Direction)Random.Range(2, 4);
+                }
+
+                
             }
-        
+
             // Cambio dirección hacia izquierda
             if (horizontalInput < 0)
             {
@@ -332,25 +349,26 @@ public class Snake : MonoBehaviour
                     canMove = false;
                     gridMoveDirection = Direction.Left;
                 }
+                else
+                {
+                    canMove = false;
+                    gridMoveDirection = (Direction)Random.Range(2, 4);
+                }
+                
             }
         }
-        else
-        {
-            gridMoveDirection.
-            /*
-            int alternativeMovement;
-            alternativeMovement = Random.Range(0, 2);
+    }
 
-            if (alternativeMovement == 0)
-            {
-                gridMoveDirection = new Vector3((moveDirection.x * -1), moveDirection.y, 0);
-            }
-            if (alternativeMovement == 1)
-            {
-                gridMoveDirection = new Vector3((moveDirection.x), moveDirection.y * -1, 0);
-            }
-            */
+    private Direction GetRandomAlternativeDirection(int axis)
+    {
+        canMove = false;
+
+        if (axis == 0) //vertical --> LEFT/RIGHT
+        {
+            return (Direction)Random.Range(0, 2);
         }
+        return (Direction)Random.Range(2, 4);
+
     }
 
     private float GetAngleFromVector(Vector2Int direction)
