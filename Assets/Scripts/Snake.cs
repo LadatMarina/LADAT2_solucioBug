@@ -168,7 +168,7 @@ public class Snake : MonoBehaviour
     private float horizontalInput, verticalInput;
 
     private float gridMoveTimer;
-    private float gridMoveTimerMax = 0.5f; // La serpiente se moverá a cada segundo
+    private float gridMoveTimerMax = 0.2f; // La serpiente se moverá a cada segundo
 
     private LevelGrid levelGrid;
 
@@ -177,9 +177,13 @@ public class Snake : MonoBehaviour
     private List<SnakeBodyPart> snakeBodyPartsList;
 
     private State state;
-    
+
+
+
+    private int wrongDir;
+
     #endregion
-    
+
     private void Awake()
     {
         startGridPosition = new Vector2Int(0, 0);
@@ -305,7 +309,9 @@ public class Snake : MonoBehaviour
                 else
                 {
                     canMove = false;
-                    gridMoveDirection = (Direction)Random.Range(0,2);
+                    Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
+                    //gridMoveDirection = (Direction)Random.Range(0,2);
+                    //cridar evento de quan no pot anar a sa direcció chosen
                 }
             }
         
@@ -322,7 +328,10 @@ public class Snake : MonoBehaviour
                 else
                 {
                     canMove = false;
-                    gridMoveDirection = (Direction)Random.Range(0, 2);
+                    Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
+
+
+                    //gridMoveDirection = (Direction)Random.Range(0, 2);
                 }
             }
 
@@ -337,10 +346,12 @@ public class Snake : MonoBehaviour
                 else
                 {
                     canMove = false;
-                    gridMoveDirection = (Direction)Random.Range(2, 4);
+                    Debug.Log(gridMoveDirection.ToString() + "WRONG DIR"); ;
+
+                    //gridMoveDirection = (Direction)Random.Range(2, 4);
                 }
 
-                
+
             }
 
             // Cambio dirección hacia izquierda
@@ -349,12 +360,14 @@ public class Snake : MonoBehaviour
                 if (gridMoveDirection != Direction.Right)
                 {
                     canMove = false;
+
                     gridMoveDirection = Direction.Left;
                 }
                 else
                 {
                     canMove = false;
-                    gridMoveDirection = (Direction)Random.Range(2, 4);
+                    Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
+                    //gridMoveDirection = (Direction)Random.Range(2, 4);
                 }
                 
             }
@@ -409,6 +422,23 @@ public class Snake : MonoBehaviour
         for (int i = 0; i < snakeBodyPartsList.Count; i++)
         {
             snakeBodyPartsList[i].SetMovePosition(snakeMovePositionsList[i]);
+        }
+    }
+    private void RandomDir() //S'HA DE SUBSCRIURE A EVENT WRONG DIRECTION.
+    {
+        wrongDir++;
+
+        if(wrongDir >= 2)
+        {
+            wrongDir = 0;
+            if ((gridMoveDirection == Direction.Right) || (gridMoveDirection == Direction.Left))
+            {
+                gridMoveDirection = (Direction)Random.Range(2, 4);
+            }
+            else if((gridMoveDirection == Direction.Up) || (gridMoveDirection == Direction.Down))
+            {
+                gridMoveDirection = (Direction)Random.Range(0, 2);
+            }
         }
     }
 }

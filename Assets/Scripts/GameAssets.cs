@@ -11,7 +11,6 @@ public class GameAssets : MonoBehaviour
     public Sprite right_a;
     public Sprite up_a;
     public Sprite dwon_a;
-    public GameObject arrow_group;
 
     private void Awake()
     {
