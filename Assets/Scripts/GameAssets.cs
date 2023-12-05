@@ -11,7 +11,7 @@ public class GameAssets : MonoBehaviour
     public Sprite right_a;
     public Sprite up_a;
     public Sprite dwon_a;
-
+    public Sprite arrow;
     private void Awake()
     {
         // Singleton

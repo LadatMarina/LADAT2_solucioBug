@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private LevelGrid levelGrid;
     private Snake snake;
 
+    //public GameObject arrows_parent;
+    //public GameObject[] arrows;
+
     private ScoreUI scoreUIScript;
     
     private void Awake()
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
         scoreUIScript = GetComponentInChildren<ScoreUI>();
         score = 0;
         AddScore(0);
+
 
     }
 

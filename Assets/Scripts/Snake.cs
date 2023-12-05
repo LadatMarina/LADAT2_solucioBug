@@ -163,7 +163,7 @@ public class Snake : MonoBehaviour
     # region VARIABLES
     private Vector2Int gridPosition; // Posición 2D de la cabeza
     private Vector2Int startGridPosition;
-    private Direction gridMoveDirection; // Dirección de la cabeza
+    private Direction gridMoveDirection; // Dirección de la cabeza   
 
     private float horizontalInput, verticalInput;
 
@@ -177,7 +177,6 @@ public class Snake : MonoBehaviour
     private List<SnakeBodyPart> snakeBodyPartsList;
 
     private State state;
-
 
 
     private int wrongDir;
@@ -212,6 +211,8 @@ public class Snake : MonoBehaviour
             case State.Dead:
                 break;
         }
+
+        
     }
     
     public void Setup(LevelGrid levelGrid)
@@ -310,7 +311,7 @@ public class Snake : MonoBehaviour
                 {
                     canMove = false;
                     Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
-                    //gridMoveDirection = (Direction)Random.Range(0,2);
+                    //OnWrongDir();
                     //cridar evento de quan no pot anar a sa direcció chosen
                 }
             }
@@ -324,13 +325,14 @@ public class Snake : MonoBehaviour
                 {
                     canMove = false;
                     gridMoveDirection = Direction.Down;
+
                 }
                 else
                 {
                     canMove = false;
                     Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
 
-
+                    //OnWrongDir();
                     //gridMoveDirection = (Direction)Random.Range(0, 2);
                 }
             }
@@ -348,6 +350,7 @@ public class Snake : MonoBehaviour
                     canMove = false;
                     Debug.Log(gridMoveDirection.ToString() + "WRONG DIR"); ;
 
+                    //OnWrongDir();
                     //gridMoveDirection = (Direction)Random.Range(2, 4);
                 }
 
@@ -367,14 +370,15 @@ public class Snake : MonoBehaviour
                 {
                     canMove = false;
                     Debug.Log(gridMoveDirection.ToString() + "WRONG DIR");
+                    //OnWrongDir();
                     //gridMoveDirection = (Direction)Random.Range(2, 4);
                 }
-                
+
             }
         }
     }
 
-    private Direction GetRandomAlternativeDirection(int axis)
+    /*private Direction GetRandomAlternativeDirection(int axis)
     {
         canMove = false;
 
@@ -384,7 +388,7 @@ public class Snake : MonoBehaviour
         }
         return (Direction)Random.Range(2, 4);
 
-    }
+    }*/
 
     private float GetAngleFromVector(Vector2Int direction)
     {
